@@ -1,15 +1,12 @@
 import { UrlShortenService } from "./UrlShortenService";
 
 exports.handler = async function(event: any) {
-  console.log({ body: event.body });
-  const service = new UrlShortenService();
-  const id = service.generateId(event.body.url, {
-    hash: process.env.hash,
-    truncateAt: process.env.truncateAt,
-  });
-  console.log({id})
+  const service = new UrlShortenService(process.env);
+  const url = event.body.url;
+  const id = await service.saveUrl(url);
+  console.log({ id, url, saved: true })
   return {
-    statusCode: 200,
+    statusCode: 201,
     headers: { "Content-Type": "text/plain" },
     body: id
   };
