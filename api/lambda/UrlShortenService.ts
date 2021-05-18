@@ -8,11 +8,16 @@ export class UrlShortenService {
     const basex = require("base-x");
 
     // in the future we might add a customer base string.
-    const hash = crypto.createHash(opts.hash).update(url + Date.now.toString()).digest("hex");
+    const hash = crypto
+      .createHash(opts.hash)
+      .update(url + Date.now().toString())
+      .digest("hex");
     // we are discarding the final part of the hash as git does.
     // This increases the chance of collision.
     const buffer = Buffer.from(hash.substr(0, Number(opts.truncateAt)));
 
-    return basex("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ").encode(buffer);
+    return basex(
+      "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    ).encode(buffer);
   }
 }
