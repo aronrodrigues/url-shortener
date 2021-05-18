@@ -1,7 +1,7 @@
 const { DynamoDB } = require('aws-sdk');
 export class UrlShortenService {
-  private env;
-  private docClient;
+  private env: any;
+  private docClient: any;
   constructor(env: any) {
     this.env = env;
     this.docClient = new DynamoDB.DocumentClient();
@@ -49,6 +49,6 @@ export class UrlShortenService {
         },
       })
       .promise();
-    return data;
+    return data.Item;
   }
 }
