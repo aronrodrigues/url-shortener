@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   api: {
-    endpoint: "https://y3unuutfyb.execute-api.eu-west-1.amazonaws.com/prod/"
+    endpoint: ""
   }
 };
 
