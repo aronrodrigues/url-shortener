@@ -35,7 +35,19 @@ export class ApiStack extends cdk.Stack {
 
     linksTable.grantReadData(loadUrlLambda);
 
-    const restApi = new apigw.RestApi(this, 'RestApi');
+    const restApi = new apigw.RestApi(this, 'RestApi', {
+      defaultCorsPreflightOptions: {
+        allowHeaders: [
+          'Content-Type',
+          'X-Amz-Date',
+          'Authorization',
+          'X-Api-Key',
+        ],
+        allowMethods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+        allowCredentials: true,
+        allowOrigins: ['*'],
+      }
+    });
     restApi.root.addMethod('ANY');
 
     const linksApiResource = restApi.root.addResource('links');

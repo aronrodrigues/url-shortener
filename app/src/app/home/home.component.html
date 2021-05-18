@@ -1,12 +1,33 @@
 <h1>URL Shortener</h1>
 <form [formGroup]="form">
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Url" formControlName="url" aria-label="Url" class="url-input">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Url"
+      formControlName="url"
+      aria-label="Url"
+      class="url-input"
+    />
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary shorten-it-button"  type="button" (click)="shortenItAction()">Shorten it</button>
+      <button
+        class="btn btn-outline-secondary shorten-it-button"
+        type="button"
+        (click)="shortenItAction()"
+      >
+        Shorten it
+      </button>
     </div>
   </div>
   <ul *ngIf="shortenedUrl">
-    <li><a href="shortenedUrl" class="response-text" target="_blank">{{shortenedUrl}}</a></li>
+    <li>
+      <a
+        [href]="shortenedUrl"
+        class="response-text"
+        [disabled]="!form.valid"
+        target="_blank"
+        >{{ shortenedUrl }}</a
+      >
+    </li>
   </ul>
 </form>

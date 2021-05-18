@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RedirectComponent } from './redirect/redirect.component';
 import { HomeComponent } from './home/home.component';
@@ -22,7 +24,8 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

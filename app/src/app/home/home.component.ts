@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ShortenAPIService } from '../shorten-api.service';
-
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
 })
 export class HomeComponent {
   shortenedUrl: string;
@@ -18,7 +17,10 @@ export class HomeComponent {
   private buildFormGroup(): void {
     const fb = new FormBuilder();
     this.form = fb.group({
-      url: fb.control('')
+      url: fb.control('', [
+        Validators.required,
+        Validators.pattern('http(s)?://.*'),
+      ]),
     });
   }
 
@@ -26,5 +28,4 @@ export class HomeComponent {
     const url = this.form.controls.url.value;
     this.shortenedUrl = await this.shortenAPISrvc.shortenUrl(url);
   }
-
 }

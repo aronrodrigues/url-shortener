@@ -6,7 +6,7 @@ exports.handler = async function(event: any) {
   const data = await service.loadUrl(id);
   return {
     statusCode: 200,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*", },
     body: JSON.stringify(data)
   };
 };

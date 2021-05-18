@@ -19,6 +19,7 @@ export class RedirectComponent implements OnInit {
     const id = this.route.snapshot.params.id;
     const url = await this.shortenApiSrvc.loadUrl(id);
     if (url !== null) {
+      console.log({url});
       this.document.defaultView.location.href = url;
     } else {
       this.router.navigate(['/']);

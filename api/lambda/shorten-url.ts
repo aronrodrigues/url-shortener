@@ -13,7 +13,7 @@ exports.handler = async function(event: any) {
   console.log({ id, url, saved: true })
   return {
     statusCode: 201,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
     body: JSON.stringify({ id })
   };
 };
