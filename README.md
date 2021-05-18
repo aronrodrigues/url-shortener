@@ -46,3 +46,4 @@
 * Throtling/retries
 * API authentication
 * No public bucket
+* Organize repository (src/ dist/)
