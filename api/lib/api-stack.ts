@@ -23,8 +23,18 @@ export class ApiStack extends cdk.Stack {
 
     linksTable.grantWriteData(shortenUrlLambda);
 
+    const loadUrlLambda = new lambda.Function(this, "LoadUrlLambda", {
+      runtime: lambda.Runtime.NODEJS_14_X,
+      code: lambda.Code.fromAsset("lambda"),
+      handler: "load-url.handler",
+      environment: {
+        linksTableName: linksTable.tableName
+      },
+    });
 
-    
+    linksTable.grantReadData(loadUrlLambda);
+
+
 
   }
 }
